@@ -1,0 +1,8 @@
+{
+  "app_name": "Shakti Scheme Application Form Data Collection",
+  "version": "1.0.8",
+  "build": "20260701.8",
+  "release_date": "2026-07-01",
+  "database": "SQLite",
+  "status": "Prototype"
+}

@@ -1,0 +1,17 @@
+{
+  "name": "shakti-scheme-application-ui",
+  "private": true,
+  "version": "1.0.8",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0 --port 5173",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0 --port 4173"
+  },
+  "dependencies": {
+    "vite": "5.4.11",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {}
+}
