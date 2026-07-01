@@ -1,7 +1,7 @@
 # Shakti Scheme Application Form Data Collection
 
-Version: 1.0.8  
-Build: 20260701.8  
+Version: 1.0.10  
+Build: 20260701.10  
 Release Date: 2026-07-01
 
 A bilingual Kannada + English prototype for collecting citizen applications for Karnataka transport schemes, passes, category eligibility, Aadhaar details, 5 Guarantee Scheme Application Number, proof details, citizen photograph, consent, and user-managed back-office operations.
@@ -30,6 +30,37 @@ A bilingual Kannada + English prototype for collecting citizen applications for 
 - Statistics page
 - Footer version details, version badge, version API, release history, CHANGELOG, and VERSION.json
 - Hardened npm startup handling to prevent silent install hangs
+
+## Railway-ready deployment
+
+This package includes deployment files for GitHub and Railway:
+
+- `Dockerfile`
+- `railway.json`
+- `.gitignore`
+- `.dockerignore`
+- `DEPLOYMENT.md`
+
+The Docker deployment builds the React frontend and serves it from the FastAPI backend as one Railway service.
+
+Recommended GitHub repository:
+
+```text
+https://github.com/satyaRaspi/1ssa
+```
+
+For full deployment steps, see:
+
+```text
+DEPLOYMENT.md
+```
+
+For Railway persistence, mount a volume at `/data` and keep these environment variables:
+
+```text
+SHAKTI_DB_PATH=/data/shakti_applications.db
+SHAKTI_UPLOAD_DIR=/data/uploads
+```
 
 ## Run the full app
 
@@ -66,6 +97,34 @@ npm install --no-audit --no-fund
 npm run dev
 ```
 
+
+## v1.0.10 update
+
+This release is the Git-ready and Railway-ready package for the repository:
+
+```text
+https://github.com/satyaRaspi/1ssa
+```
+
+Included deployment files:
+
+- `Dockerfile`
+- `railway.json`
+- `.gitignore`
+- `.dockerignore`
+- `DEPLOYMENT.md`
+- `GIT_STEPS.md`
+
+## v1.0.9 update
+
+This release makes the app GitHub and Railway deployment-ready:
+
+- Added Dockerfile for one-service Railway deployment.
+- Added railway.json with Dockerfile builder and `/health` health check.
+- Frontend now supports same-origin API calls in deployment.
+- Backend serves the built React frontend from `frontend/dist`.
+- Added persistent path support using `SHAKTI_DB_PATH` and `SHAKTI_UPLOAD_DIR`.
+- Added `DEPLOYMENT.md` with exact GitHub and Railway steps for `satyaRaspi`.
 
 ## v1.0.8 update
 

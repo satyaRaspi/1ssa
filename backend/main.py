@@ -254,3 +254,9 @@ def edit_user(user_id: int, payload: dict):
     if not updated:
         raise HTTPException(status_code=404, detail="User not found")
     return updated
+
+# Serve the built React frontend when deployed as a single Railway/Docker service.
+# API routes are declared above; this catch-all static mount is intentionally last.
+FRONTEND_DIST = Path(__file__).resolve().parent.parent / "frontend" / "dist"
+if FRONTEND_DIST.exists():
+    app.mount("/", StaticFiles(directory=str(FRONTEND_DIST), html=True), name="frontend")

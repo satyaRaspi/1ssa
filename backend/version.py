@@ -1,15 +1,41 @@
 APP_NAME = "Shakti Scheme Application Form Data Collection"
-APP_VERSION = "1.0.8"
-BUILD_NUMBER = "20260701.8"
+APP_VERSION = "1.0.10"
+BUILD_NUMBER = "20260701.10"
 RELEASE_DATE = "2026-07-01"
 DATABASE_ENGINE = "SQLite"
-APP_STATUS = "Prototype"
+APP_STATUS = "Prototype - Git and Railway Ready"
 RELEASE_NOTES = [
-    "Fixed empty tooltip boxes by hiding information icons when no help text exists.",
-    "Added automatic Kannada-name suggestion from the English name while keeping the Kannada field editable.",
-    "Changed eligibility proof capture to separate front-page and back-page JPG-only uploads."
+    "Packaged as the latest Git-ready and Railway-ready release.",
+    "Deployment documentation now uses satyaRaspi/1ssa as the target GitHub repository.",
+    "Includes Dockerfile, railway.json, .gitignore, .dockerignore, GIT_STEPS.md and DEPLOYMENT.md."
 ]
 VERSION_HISTORY = [
+    {
+        "version": "1.0.10",
+        "build": "20260701.10",
+        "release_date": "2026-07-01",
+        "title": "Git and Railway Ready Package",
+        "changes": [
+            "Packaged the latest build for direct commit to GitHub repository satyaRaspi/1ssa.",
+            "Added GIT_STEPS.md with exact local Git commands for the 1ssa repository.",
+            "Updated README and DEPLOYMENT.md to reference satyaRaspi/1ssa.",
+            "Confirmed Railway deployment assets are included: Dockerfile, railway.json, .gitignore and .dockerignore."
+        ]
+    },
+    {
+        "version": "1.0.9",
+        "build": "20260701.9",
+        "release_date": "2026-07-01",
+        "title": "GitHub and Railway Deployment Release",
+        "changes": [
+            "Added Dockerfile for single-service Railway deployment.",
+            "Added railway.json with Dockerfile builder, health check and restart policy.",
+            "Frontend now defaults to same-origin API calls for deployed environments while local start_dev.py still sets localhost API base.",
+            "Backend now serves the built React frontend from frontend/dist when available.",
+            "Added SHAKTI_DB_PATH and SHAKTI_UPLOAD_DIR environment variable support for persistent Railway volume usage.",
+            "Added deployment guide with GitHub and Railway steps for the satyaraspi account."
+        ]
+    },
     {
         "version": "1.0.8",
         "build": "20260701.8",

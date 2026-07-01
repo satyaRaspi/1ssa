@@ -1,8 +1,9 @@
 {
   "app_name": "Shakti Scheme Application Form Data Collection",
-  "version": "1.0.8",
-  "build": "20260701.8",
+  "version": "1.0.10",
+  "build": "20260701.10",
   "release_date": "2026-07-01",
   "database": "SQLite",
-  "status": "Prototype"
+  "status": "Prototype - Git and Railway Ready",
+  "repository": "satyaRaspi/1ssa"
 }

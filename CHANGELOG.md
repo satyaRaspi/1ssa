@@ -1,85 +1,85 @@
 # Changelog
 
-## v1.0.8 — 2026-07-01
+## 1.0.10 - 2026-07-01
 
-- Fixed macOS/Python 3.13 startup failure when `python -m venv` fails during `ensurepip`.
-- Added `--use-system-python` startup option to bypass `.venv`.
-- Added automatic system-Python fallback when virtual environment creation fails.
-- Changed backend requirement from `uvicorn[standard]` to lightweight `uvicorn` to avoid unnecessary native dependency issues.
-- Updated startup error messages with clearer Mac commands.
+- Packaged latest build as Git-ready and Railway-ready for `satyaRaspi/1ssa`.
+- Added `GIT_STEPS.md` with exact commands for pushing to GitHub.
+- Updated `DEPLOYMENT.md` and `README.md` to use `satyaRaspi/1ssa`.
+- Confirmed deployment assets are present: `Dockerfile`, `railway.json`, `.gitignore`, and `.dockerignore`.
 
-## v1.0.7 — 2026-07-01
-- Fixed empty/blank tooltip boxes by suppressing the information control when no tooltip text is available.
-- Added automatic Kannada-name suggestion from the English name.
-- Kept the Kannada name field editable for manual corrections.
-- Replaced the single eligibility proof upload with separate Proof Front Page and Proof Back Page uploads.
-- Restricted eligibility proof uploads to JPG/JPEG files in the frontend and backend.
-- Added database migration columns for `proof_front_file_path` and `proof_back_file_path` while preserving legacy compatibility.
+## v1.0.9 - GitHub and Railway Deployment Release
 
-## v1.0.6 — 2026-07-01
-- Added automatic backend virtual environment repair for missing `.venv/bin/python` on macOS.
-- Added `--reset-env` startup option to delete and recreate the backend Python environment.
-- Improved startup diagnostics for broken virtual environments.
+Build: 20260701.9  
+Release Date: 2026-07-01
 
-## v1.0.5 — 2026-07-01
-- Converted visible explanatory notes into compact ⓘ tooltip controls.
-- Added tooltip support for field hints, AI recommendation guidance, scheme/pass descriptions, settings guidance and default admin note.
-- Kept labels and data visible while reducing clutter on desktop and mobile screens.
-- Updated version metadata to Build 20260701.5.
+### Added
 
-## v1.0.4 — 2026-07-01
+- Railway-ready `Dockerfile` for single-service deployment.
+- `railway.json` using Dockerfile builder, `/health` health check, and restart policy.
+- Same-origin API support for deployed frontend.
+- FastAPI static serving for the built React frontend from `frontend/dist`.
+- `SHAKTI_DB_PATH` and `SHAKTI_UPLOAD_DIR` environment variable support for persistent Railway volume usage.
+- `.gitignore` and `.dockerignore` for clean GitHub and Docker builds.
+- `DEPLOYMENT.md` with GitHub and Railway steps for the `satyaraspi` account.
 
-AI scheme selection, photo capture, clickable catalogue, user management and mobile UI release.
+### Notes
 
-- Added local AI-style scheme/pass recommendation rules.
-- On selecting a scheme, the form now shows only appropriate pass types.
-- Recommended pass type is automatically selected when the scheme changes.
-- Validity requested is now driven by the selected pass type.
-- Validity end date is calculated automatically after selecting the validity start date.
-- Age is calculated from Date of Birth and shown as a read-only field.
-- Added citizen photograph upload and camera capture in the New Application form.
-- Scheme and pass tiles are clickable and open a detailed information panel.
+- The app can now be deployed as one Railway service.
+- For persistent SQLite data and uploaded citizen/proof photos, mount a Railway volume at `/data`.
+
+## v1.0.8 - Kannada Name and Proof Upload Refinement Release
+
+- Fixed blank tooltip boxes by trimming and validating tooltip text before display.
+- Added automatic Kannada-name suggestion when the English name is entered; the Kannada field remains editable.
+- Split eligibility proof upload into Proof Front Page and Proof Back Page fields.
+- Restricted eligibility proof uploads to JPG/JPEG files in frontend and backend validation.
+- Added database columns for `proof_front_file_path` and `proof_back_file_path` while keeping legacy `proof_file_path` compatibility.
+
+## v1.0.6 - Backend Environment Repair Release
+
+- Automatically detects an incomplete backend virtual environment and recreates it once.
+- Added `--reset-env` startup option for deleting and rebuilding `backend/.venv`.
+- Improved error messages for missing `.venv/bin/python` and related startup issues.
+
+## v1.0.5 - Tooltip UI Cleanup Release
+
+- Converted visible explanatory notes into compact information icons with hover/focus tooltips.
+- Moved field hints, AI recommendation explanations, catalogue descriptions, settings notes and default admin guidance behind the ⓘ control.
+- Improved catalogue cards to remain clickable while supporting information tooltips.
+
+## v1.0.4 - AI Scheme Selection, Photo Capture and User Management Release
+
+- Added local AI-style scheme/pass recommendation rules to show only valid pass types for the selected scheme.
+- Automatically selects the recommended pass type and validity when the scheme changes.
+- Validity end date is auto-calculated from the selected start date and requested validity.
+- Age is calculated from date of birth and shown as a read-only field.
+- Citizen photograph can now be uploaded or captured from camera on the new application form.
+- Scheme and pass master tiles are clickable and open detailed information panels.
 - Added user management with Admin, Data Entry Operator, Approver and Viewer roles.
-- Added default prototype admin user creation: `Admin / admin123`.
-- Improved mobile phone layout, horizontal menu, sticky action area, and catalogue detail modal.
-- Updated backend version API, frontend package version, `VERSION.json`, README files, and release history.
+- Improved mobile phone layout, navigation and form usability.
 
-## v1.0.3 — 2026-07-01
+## v1.0.3 - Footer Version Details Release
 
-Footer version details release.
-
-- Added a full-width footer on every page with version, build number, release date, database, and application status.
+- Added a full-width footer on every page with version, build, release date, database, and status.
 - Expanded the left sidebar footer to show complete version metadata.
-- Added bilingual footer labels for English and Kannada UI modes.
-- Updated `backend/version.py`, `frontend/package.json`, `VERSION.json`, README files, and release history.
+- Added bilingual labels for database, status, and footer product text.
 
-## v1.0.2 — 2026-07-01
+## v1.0.2 - Startup Stability Release
 
-- Fixed npm install startup hang risk caused by stale/private registry URLs in the generated lock file.
-- Removed `frontend/package-lock.json` from the packaged distribution.
-- Added `frontend/.npmrc` pointing to the public npm registry and disabling audit/fund/progress during install.
-- Pinned frontend packages to public stable versions: React 18.2.0, React DOM 18.2.0, and Vite 5.4.11.
-- Updated `start_dev.py` with timeout-based npm install, clearer diagnostics, `--skip-install`, `--backend-only`, `--frontend-only`, and `--npm-timeout`.
+- Removed generated `package-lock.json` to avoid private build-registry URLs on user machines.
+- Pinned React and Vite dependencies to stable public versions.
+- Added `.npmrc` with public npm registry, audit disabled, funding disabled, and progress disabled.
+- Updated `start_dev.py` with npm timeout, clearer error message, `--skip-install`, `--backend-only`, `--frontend-only`, and `--npm-timeout` options.
 
-## v1.0.1 — 2026-07-01
+## v1.0.1 - Versioning Release
 
-Versioning release.
+- Application version shown in sidebar, header, settings, and README.
+- Backend exposes `/api/version` and `/api/version-history`.
+- Frontend package version updated to `1.0.1`.
+- CHANGELOG and VERSION metadata files added.
 
-- Added visible version number in the sidebar footer.
-- Added version badge in the top header.
-- Added version details and release history in Settings.
-- Added backend `/api/version` and `/api/version-history` endpoints.
-- Added `VERSION.json` for deployment and support reference.
-- Updated frontend package version to 1.0.1.
+## v1.0.0 - Initial Prototype
 
-## v1.0.0 — 2026-07-01
-
-Initial prototype.
-
-- Kannada + English citizen application form.
-- Scheme/pass/category master data.
-- Aadhaar and 5 Guarantee Scheme Application No. capture.
-- Proof type, proof reference, and proof upload.
-- Application register with search.
-- Statistics dashboard.
-- SQLite database for prototype use.
+- Bilingual Kannada and English citizen application form.
+- SQLite-backed schemes, passes, categories, applications, proof upload, search, and statistics.
+- Clean left-side menu layout for demo and review.

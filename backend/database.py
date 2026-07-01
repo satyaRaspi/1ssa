@@ -5,9 +5,13 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 BASE_DIR = Path(__file__).resolve().parent
-DB_PATH = BASE_DIR / "shakti_applications.db"
-UPLOAD_DIR = BASE_DIR / "uploads"
-UPLOAD_DIR.mkdir(exist_ok=True)
+# Railway/Docker production deployments can set these to a mounted volume, for example:
+# SHAKTI_DB_PATH=/data/shakti_applications.db
+# SHAKTI_UPLOAD_DIR=/data/uploads
+DB_PATH = Path(os.getenv("SHAKTI_DB_PATH", str(BASE_DIR / "shakti_applications.db"))).resolve()
+DB_PATH.parent.mkdir(parents=True, exist_ok=True)
+UPLOAD_DIR = Path(os.getenv("SHAKTI_UPLOAD_DIR", str(BASE_DIR / "uploads"))).resolve()
+UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
 
 SCHEMES = [
     ("shakti", "Shakti Scheme", "ಶಕ್ತಿ ಯೋಜನೆ", "Free bus travel for women in eligible non-AC government buses across Karnataka.", "ಕರ್ನಾಟಕದ ಅರ್ಹ non-AC ಸರ್ಕಾರಿ ಬಸ್ಸುಗಳಲ್ಲಿ ಮಹಿಳೆಯರಿಗೆ ಉಚಿತ ಪ್ರಯಾಣ."),
